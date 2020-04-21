@@ -1,0 +1,32 @@
+server:
+  port: 8002 #服务端口
+spring:
+  application:
+    name: cloud-payment-service #服务名
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+devtools:
+  restart:
+    enabled: true #是否支持热部署
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.atguigu.springcloud.entities  #所有entity别名所在包
+eureka:
+  client:
+    # false表示不向注册中心注册自己
+    register-with-eureka: true
+    # false表示自己端就是注册中心,我的职责就是维护服务实例,并不需要检索服务
+    fetch-registry: true
+    service-url:
+      #入住服务器地址的eurake
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7001.com:7001/eureka/
+  instance:
+    #配置显示于客户端的ip 隐藏真实的服务器名字
+    instance-id: payment8002
+    #配置访问路径可以显示IP地址
+    prefer-ip-address: true
